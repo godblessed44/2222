@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Для тебя ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      font-family: 'Georgia', serif;
+      color: #fff;
+      overflow: hidden;
+    }
+    .heart {
+      width: 120px;
+      height: 120px;
+      background: #e63946;
+      position: relative;
+      transform: rotate(-45deg);
+      animation: beat 1.2s infinite;
+      box-shadow: 0 0 40px rgba(230, 57, 70, 0.7);
+      margin-bottom: 60px;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 120px;
+      height: 120px;
+      background: #e63946;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before {
+      top: -60px;
+      left: 0;
+    }
+    .heart::after {
+      top: 0;
+      left: 60px;
+    }
+    @keyframes beat {
+      0%, 100% { transform: rotate(-45deg) scale(1); }
+      50%      { transform: rotate(-45deg) scale(1.15); }
+    }
+    .message {
+      max-width: 600px;
+      text-align: center;
+      padding: 0 30px;
+      line-height: 1.7;
+      font-size: 1.15rem;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 1s;
+    }
+    .message h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ff8fa3, #e63946, #ff8fa3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .stars span {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50%      { opacity: 0.9; transform: scale(1.4); }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="heart"></div>
+  <div class="message">
+    <h1>Для тебя, моя радость. ❤️</h1>
+    <p>Люблю тебя очень сильно, моя кисенька. Сильно по тебе скучаю.
+    </p>
+  </div>
+
+  <script>
+    // Добавляем случайные "звёзды" на фон
+    const stars = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) {
+      const s = document.createElement('span');
+      const size = Math.random() * 3 + 1;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = Math.random() * 100 + 'vw';
+      s.style.top = Math.random() * 100 + 'vh';
+      s.style.animationDelay = Math.random() * 3 + 's';
+      stars.appendChild(s);
+    }
+  </script>
+</body>
+</html>
